@@ -17,12 +17,8 @@ public class Application {
                 break;
             }
             // Gemini
-//            String output = gemini.chat(input);
-//            String output = gemini.chat(input, "gemini-2.5-pro");
-            // https://ai.google.dev/gemini-api/docs/models?hl=ko
-            // https://ai.google.dev/gemini-api/docs/rate-limits?hl=ko
-//            String output = gemini.chat(input, "gemini-2.5-flash-lite");
-            String output = gemini.chat(input, GeminiModel.GEMINI_2_5_FLASH_LITE);
+//            String output = gemini.chat(input, GeminiModel.GEMINI_2_5_FLASH_LITE);
+            String output = gemini.chat(input, GeminiModel.GEMINI_2_5_FLASH_LITE, "50자 이내의 꾸미는 문법 없이 단순한 평문 텍스트로 결과만 작성");
             System.out.println("\uD83D\uDCAC AI : %s".formatted(output));
         }
         sc.close();
