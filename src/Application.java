@@ -30,19 +30,6 @@ public class Application {
                 System.out.println("🤖 GEMINI_API_KEY가 없습니다");
                 return;
             }
-            /*
-curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"   -H "x-goog-api-key: $GEMINI_API_KEY"   -H 'Content-Type: application/json'   -X POST   -d '{
-    "contents": [
-      {
-        "parts": [
-          {
-            "text": "Explain how AI works in a few words"
-          }
-        ]
-      }
-    ]
-  }'
-             */
             String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
             String payload = """
             {"contents": [{"parts": [{"text": "%s"}]}]}
@@ -57,14 +44,19 @@ curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:g
                     .build();
             // http://aistudio.google.com/
             // HttpResponse.BodyHandlers.ofString() : 문자열
+            String output = ""; // 스코프.
             try {
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
                 String body = response.body();
-                System.out.println(body);
+//                System.out.println(body);
+                // output으로 전달
+                // String 편집
+                output = body.split("\"text\": \"")[1]
+                        .split("\"\\s*}")[0]; // 정규표현식 패턴
             } catch (Exception ex) {
                 ex.getStackTrace(); // 에러 추적 메시지
             }
-            String output = "무슨 말씀이시죠?";
+//            String output = "무슨 말씀이시죠?";
 //            System.out.println("AI : 무슨 말씀이시죠?");
             // %s <- String
             // mac : fn * 2, win : 윈도우(win) + .
