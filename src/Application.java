@@ -9,6 +9,7 @@ public class Application {
         System.out.println("🤖 챗봇 구동 시작");
         Scanner sc = new Scanner(System.in);
         GeminiService gemini = new GeminiService();
+        String instruction = "50자 이내, 마크다운 없이, 영어로 결과만 작성.";
         while (true) {
             System.out.print("🤖 질문을 입력해주세요 : ");
             String input = sc.nextLine();
@@ -18,7 +19,8 @@ public class Application {
             }
             // Gemini
 //            String output = gemini.chat(input, GeminiModel.GEMINI_2_5_FLASH_LITE);
-            String output = gemini.chat(input, GeminiModel.GEMINI_2_5_FLASH_LITE, "50자 이내의 꾸미는 문법 없이 단순한 평문 텍스트로 결과만 작성");
+//            String output = gemini.chat(input, GeminiModel.GEMINI_2_5_FLASH_LITE, "50자 이내의 꾸미는 문법 없이 단순한 평문 텍스트로 결과만 작성");
+            String output = gemini.chat(input, GeminiModel.GEMINI_2_5_FLASH_LITE, instruction);
             System.out.println("\uD83D\uDCAC AI : %s".formatted(output));
         }
         sc.close();
