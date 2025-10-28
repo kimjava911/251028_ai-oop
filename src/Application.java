@@ -1,3 +1,6 @@
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.Scanner;
 
 public class Application {
@@ -15,6 +18,18 @@ public class Application {
             if (input.equals("종료")) {
                 System.out.println("🤖 챗봇 구동 종료");
                 break;
+            }
+            // Gemini
+            HttpClient client = HttpClient.newHttpClient();
+            // request, responseHandler
+            HttpRequest request = null;
+            // HttpResponse.BodyHandlers.ofString() : 문자열
+            try {
+                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                String body = response.body();
+                System.out.println(body);
+            } catch (Exception ex) {
+                ex.getStackTrace(); // 에러 추적 메시지
             }
             String output = "무슨 말씀이시죠?";
 //            System.out.println("AI : 무슨 말씀이시죠?");
