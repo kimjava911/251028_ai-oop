@@ -16,7 +16,11 @@ public class Application {
                 break;
             }
             // Gemini
-            String output = gemini.chat(input);
+//            String output = gemini.chat(input);
+//            String output = gemini.chat(input, "gemini-2.5-pro");
+            // https://ai.google.dev/gemini-api/docs/models?hl=ko
+            // https://ai.google.dev/gemini-api/docs/rate-limits?hl=ko
+            String output = gemini.chat(input, "gemini-2.5-flash-lite");
             System.out.println("\uD83D\uDCAC AI : %s".formatted(output));
         }
         sc.close();
