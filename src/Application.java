@@ -1,3 +1,4 @@
+import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -22,7 +23,49 @@ public class Application {
             // Gemini
             HttpClient client = HttpClient.newHttpClient();
             // request, responseHandler
-            HttpRequest request = null;
+//            String API_KEY = "...";
+            String API_KEY = System.getenv("GEMINI_API_KEY");
+            // 없으면 Null
+            if (API_KEY == null) {
+                System.out.println("🤖 GEMINI_API_KEY가 없습니다");
+                return;
+            }
+            /*
+curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"   -H "x-goog-api-key: $GEMINI_API_KEY"   -H 'Content-Type: application/json'   -X POST   -d '{
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "Explain how AI works in a few words"
+          }
+        ]
+      }
+    ]
+  }'
+             */
+            String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
+            String payload = """
+            {
+                "contents": [
+                  {
+                    "parts": [
+                      {
+                        "text": "Explain how AI works in a few words"
+                      }
+                    ]
+                  }
+                ]
+            }
+            """;
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .header("x-goog-api-key", API_KEY)
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(
+                            payload
+                    ))
+                    .build();
+            // http://aistudio.google.com/
             // HttpResponse.BodyHandlers.ofString() : 문자열
             try {
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
