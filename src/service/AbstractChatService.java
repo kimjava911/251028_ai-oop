@@ -15,9 +15,9 @@ public abstract class AbstractChatService implements ChatService {
         API_URL = apiURL;
     }
 
-    protected String sendRequest(String payload, String[] headers) {
+    protected String sendRequest(String url, String payload, String[] headers) {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(API_URL))
+                .uri(URI.create(url))
                 .POST(HttpRequest.BodyPublishers.ofString(payload))
                 .headers(headers) // header name, value, name, value ...
                 .build();

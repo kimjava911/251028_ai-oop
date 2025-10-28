@@ -1,4 +1,4 @@
-import model.GeminiModel;
+import model.ChatModel;
 import service.GeminiService;
 
 import java.util.Scanner;
@@ -17,10 +17,7 @@ public class Application {
                 System.out.println("🤖 챗봇 구동 종료");
                 break;
             }
-            // Gemini
-//            String output = gemini.chat(input, GeminiModel.GEMINI_2_5_FLASH_LITE);
-//            String output = gemini.chat(input, GeminiModel.GEMINI_2_5_FLASH_LITE, "50자 이내의 꾸미는 문법 없이 단순한 평문 텍스트로 결과만 작성");
-            String output = gemini.chat(input, GeminiModel.GEMINI_2_5_FLASH_LITE, instruction);
+            String output = gemini.chat(input, ChatModel.GEMINI_2_5_FLASH_LITE, instruction);
             System.out.println("\uD83D\uDCAC AI : %s".formatted(output));
         }
         sc.close();
