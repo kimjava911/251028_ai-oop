@@ -1,5 +1,7 @@
 package service;
 
+import model.GeminiModel;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -48,5 +50,15 @@ public class GeminiService {
     // 오버로딩
     public String chat(String input, String model) {
         return chatUseModel(input, model);
+    }
+
+    public String chat(String input, GeminiModel model) {
+//        String modelCode = switch (model) {
+//            case GEMINI_2_5_FLASH -> "gemini-2.5-flash";
+//            case GEMINI_2_5_PRO -> "gemini-2.5-pro";
+//            case GEMINI_2_5_FLASH_LITE -> "gemini-2.5-flash-lite";
+//        };
+//        return chatUseModel(input, modelCode);
+        return chatUseModel(input, model.modelCode);
     }
 }
