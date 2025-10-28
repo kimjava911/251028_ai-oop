@@ -45,18 +45,8 @@ curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:g
              */
             String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
             String payload = """
-            {
-                "contents": [
-                  {
-                    "parts": [
-                      {
-                        "text": "Explain how AI works in a few words"
-                      }
-                    ]
-                  }
-                ]
-            }
-            """;
+            {"contents": [{"parts": [{"text": "%s"}]}]}
+            """.formatted(input); // JSON 포맷
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(url))
                     .header("x-goog-api-key", API_KEY)
