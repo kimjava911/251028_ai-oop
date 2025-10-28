@@ -9,7 +9,7 @@ public class Application {
     public static void main(String[] args) {
         System.out.println("🤖 챗봇 구동 시작");
         Scanner sc = new Scanner(System.in);
-        ChatService chatService = new GeminiService();
+        ChatService chatService = new GeminiService(); // Groq, OpenRouter ?
         String instruction = "50자 이내, 마크다운 없이, 영어로 결과만 작성.";
         while (true) {
             System.out.print("🤖 질문을 입력해주세요 : ");
