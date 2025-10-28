@@ -17,8 +17,15 @@ public class GeminiService {
 //        String payload = """
 //                    {"contents": [{"parts": [{"text": "%s"}]}]}
 //                    """.formatted(input); // JSON 포맷
+//        String payload = """
+//                    {"contents": [{"parts": [{"text": "%s %s"}]}]}
+//                    """.formatted(input, instruction);
+        // https://ai.google.dev/gemini-api/docs/text-generation?hl=ko#rest_2
         String payload = """
-                    {"contents": [{"parts": [{"text": "%s %s"}]}]}
+                    {
+                    "contents": [{"parts": [{"text": "%s"}]}],
+                    "system_instruction": {"parts": [{"text": "%s"}]}
+                    }
                     """.formatted(input, instruction); // JSON 포맷
         // String model = "gemini-2.5-flash";
         HttpRequest request = HttpRequest
